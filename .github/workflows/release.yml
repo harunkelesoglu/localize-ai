@@ -24,8 +24,9 @@ jobs:
       - run: npm install
 
       - name: Publish latest version
-      - run: npm run build
-      - run: npm run release
+      - run: |
+          npm run build
+          npm run release
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN}}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN}}
