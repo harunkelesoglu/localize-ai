@@ -1,0 +1,53 @@
+{
+  "name": "@celsus-ai/localize",
+  "version": "1.0.0",
+  "description": "The LocalizeAI is an npm package that enables easy localization of your applications using OpenAI. It provides seamless integration with OpenAI's language models, allowing you to localize and adapt your applications to different languages and regions effortlessly",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "prepare": "husky install",
+    "release": "semantic-release",
+    "start": "node dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/celsus-ai/localize.git"
+  },
+  "keywords": [
+    "localize",
+    "localization",
+    "openai"
+  ],
+  "author": "https://github.com/harunkelesoglu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/celsus-ai/localize/issues"
+  },
+  "homepage": "https://github.com/celsus-ai/localize#readme",
+  "dependencies": {
+    "openai": "^3.3.0",
+    "winston": "^3.9.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.6.5",
+    "@commitlint/config-conventional": "^17.6.5",
+    "@commitlint/core": "^17.6.5",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^9.0.3",
+    "@semantic-release/npm": "^10.0.4",
+    "@types/node": "^20.3.1",
+    "husky": "^8.0.0",
+    "semantic-release": "^21.0.5"
+  },
+  "release": {
+    "branches": [
+      "main"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/npm",
+      "@semantic-release/git"
+    ]
+  }
+}
