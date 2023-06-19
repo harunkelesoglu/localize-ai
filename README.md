@@ -1,6 +1,6 @@
 # celsus-ai/localize
 
-**celsus-ai/localize** is a localization library for applications that require localization. It integrates with Git hooks and performs necessary configurations to provide translations in the target language based on the key-value relationships in the selected base language. The library utilizes the OpenAI API to perform the translations.
+The celsus-ai/localize is an npm package that enables easy localization of your applications using OpenAI. It provides seamless integration with OpenAI's language models, allowing you to localize and adapt your applications to different languages and regions effortlessly
 
 ## Installation
 
@@ -59,6 +59,9 @@ Contributions are welcome! Please follow the [contribution guidelines](CONTRIBUT
 ## Acknowledgements
 
 This library is built upon various open-source packages and technologies. We would like to express our gratitude to the developers and contributors of those projects.
+
+## celsus-ai
+<a href="https://github.com/celsus-ai" target="_new"><img src="https://img.shields.io/badge/celsus--ai-black?style=for-the-badge&amp;labelColor=yellow&amp;logoColor=white&amp;label=AI%20Based%20Libraries" alt="celsus-ai"></a> aims to develop AI-based libraries, tools, and products to make life easier with AI. Our goal is to empower developers and users by providing innovative solutions that leverage artificial intelligence. We believe in harnessing the power of AI to simplify complex tasks, automate processes, and unlock new possibilities across various domains. Join us on this journey to explore the frontiers of AI and create a smarter future.
 
 ## Contact
 
