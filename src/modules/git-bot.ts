@@ -44,6 +44,10 @@ export class GitBot {
     public commitChanges(): void {
 
         logger.debug('[GitBot] changes committing...');
+
+        execSync('git config user.email "localize-ai@celsus.com"');
+        execSync('git config user.name "Localize AI"');
+        
         execSync('git commit -m "chore: Translations added"');
     }
 
