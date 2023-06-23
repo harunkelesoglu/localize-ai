@@ -16,11 +16,11 @@ export class GitBot {
     }
 
     public hasTranslationChanges(): boolean {
-        const { localesDir, baseLanguage } = this.config;
+        const { baseLanguage } = this.config;
 
         logger.debug(`[GitBot] checking diff...`);
         const diffOutput = execSync("git diff --name-only HEAD^").toString().trim();
-        return diffOutput.includes(`${localesDir}/${baseLanguage}.json`);
+        return diffOutput.includes(`${baseLanguage}.json`);
     }
 
     public createAndCheckoutBranch(translationBranch: string): void {
