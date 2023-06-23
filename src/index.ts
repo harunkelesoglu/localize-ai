@@ -22,7 +22,7 @@ async function run(): Promise<void> {
       await localize.translate();
       git.stagedChanges();
       git.commitChanges();
-      git.pushChanges(baseBranch);
+      git.pushChanges(translationBranch);
       git.createPullRequest(baseBranch, translationBranch);
 
     } else {
