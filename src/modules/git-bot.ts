@@ -48,7 +48,7 @@ export class GitBot {
         execSync('git config user.email "localize-ai@celsus.com"');
         execSync('git config user.name "Localize AI"');
         
-        execSync('git commit -m "chore: Translations added" --author="Localize AI <localize-ai@celsus.com>" -c "user.name=Localize AI" -c "user.email=localize-ai@celsus.com" -c "credential.helper=store --file=.git/credentials"');
+        execSync('git commit -m "chore: Translations added"');
     }
 
     public pushChanges(translationBranch: string): void {
