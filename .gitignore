@@ -137,3 +137,6 @@ dist
 
 # Distrubutions
 .dist
+
+# VSCode
+.vscode

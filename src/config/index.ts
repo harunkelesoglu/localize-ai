@@ -1,11 +1,5 @@
 import { Parser } from '../utils';
-import path from 'path';
 import { BitbucketAPI, ConfigPath, GithubAPI, LanguageCodes, Platform } from "../constants";
-
-const mainModulePath = require.main?.filename;
-const projectDirectory = mainModulePath ? path.dirname(mainModulePath) : '';
-const packageJsonPath = path.join(projectDirectory, 'package.json');
-const configPath = path.resolve(ConfigPath);
 
 export interface IBaseConfig  {
   baseLanguage: LanguageCodes;
@@ -31,7 +25,7 @@ const baseConfig: IBaseConfig = {
   };
   
 
-export function loadConfig(): ILibConfig {
+export function loadConfig(configPath: string, packageJsonPath: string): ILibConfig {
 
     const configuration = require(configPath);
     const pkg = require(packageJsonPath);

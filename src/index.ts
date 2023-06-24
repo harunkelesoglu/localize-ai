@@ -2,11 +2,17 @@ import { LocalizationAI } from "./modules/localize/localize";
 import {GitBot, BitbucketCIBot, GithubCIBot } from "./modules/ci";
 import { ILibConfig, loadConfig } from "./config";
 import { logger } from './utils'
-import { Platform } from "./constants";
+import { Platform, ConfigPath } from "./constants";
+import path from 'path';
 
 const isCIEnvironment = process.env.CI;
 const baseBranch = process.env.GITHUB_REF || process.env.BITBUCKET_BRANCH || '';
 const translationBranch = `localize-ai-${new Date().getTime()}`;
+
+const mainModulePath = require.main?.filename;
+const projectDirectory = mainModulePath ? path.dirname(mainModulePath) : '';
+const packageJsonPath = path.join(projectDirectory, 'package.json');
+const configPath = path.resolve(ConfigPath);
 
 
 function ciCreator(config: ILibConfig ): GitBot {
@@ -22,7 +28,7 @@ function ciCreator(config: ILibConfig ): GitBot {
 
 
 async function run(): Promise<void> {
-  const config = loadConfig();
+  const config = loadConfig(configPath, packageJsonPath);
   const localize = new LocalizationAI(config);
   
   if(isCIEnvironment) {
