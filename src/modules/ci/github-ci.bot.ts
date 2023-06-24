@@ -1,4 +1,4 @@
-import { IBaseConfig, ILibConfig } from "../../config";
+import { ILibConfig } from "../../config";
 import { Commit } from "../../constants";
 import {logger, HttpClient, Parser} from '../../utils';
 import { GitBot } from './git.bot';
