@@ -109,3 +109,30 @@ export enum LanguageCodes {
   yo = "Yoruba",
   zu = "Zulu"
 }
+
+export enum Platform {
+  github = "github",
+  bitbucket = "bitbucket"
+}
+
+export const RegexPatterns = {
+  bitbucket: /bitbucket\.org\/([^\/]+)\/([^\/]+)\.git/,
+  github: /github\.com\/([^\/]+)\/([^\/]+)\.git/
+}
+
+export const Commit = {
+  title: "localize-ai: Translation Update",
+  description: "Translations completed"
+}
+
+export const GithubAPI = {
+  baseUrl: 'https://api.github.com/repos/',
+  token: process.env.GH_TOKEN || process.env.GITHUB_TOKEN
+}
+
+export const BitbucketAPI = {
+  baseUrl: 'https://api.bitbucket.org/2.0/repositories/',
+  token: process.env.BITBUCKET_TOKEN
+}
+
+export const ConfigPath = './localize-ai.config.js'
