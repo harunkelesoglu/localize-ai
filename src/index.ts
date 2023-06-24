@@ -45,7 +45,7 @@ async function run(): Promise<void> {
     await localize.translate();
   }
 
-  logger.debug('[Localize AI][run] runned successfully.');
+  logger.info('[Localize AI][run] runned successfully.');
   process.exit(0);
 }
 
