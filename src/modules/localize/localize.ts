@@ -1,24 +1,25 @@
 import * as fs from 'fs';
 import { OpenAIApi, Configuration, CreateChatCompletionRequest } from 'openai';
-import logger from '../utils/logger';
-import { LanguageCodes } from '../constants/language-codes';
-import { IConfig } from '../config';
+import { logger } from '../../utils';
+import { LanguageCodes } from '../../constants';
+import { IBaseConfig } from '../../config';
 
 export interface Translation {
   [key: string]: string;
 }
 
 export class LocalizationAI {
-  private config: IConfig;
+  private config: IBaseConfig;
   private openAIClient: OpenAIApi;
 
-  constructor(config: IConfig) {
+  constructor(config: IBaseConfig) {
     this.config = config;
     this.openAIClient = new OpenAIApi(new Configuration({ apiKey: config.apiKey }));
   }
 
   private async openAITranslator(baseLanguage: LanguageCodes, targetLanguage: LanguageCodes, sourceText: string): Promise<string> {
-    logger.debug('[Localize AI] openAITranslator', { baseLanguage, targetLanguage, sourceText });
+
+    logger.debug('[Localize AI][openAITranslator] being translated...', { baseLanguage, targetLanguage, sourceText });
 
     const createChatCompletionRequest: CreateChatCompletionRequest = {
       model: "gpt-3.5-turbo",
@@ -38,14 +39,14 @@ export class LocalizationAI {
     const { localesDir, baseLanguage, targetLanguages } = this.config;
     const baseFilePath = `${localesDir}/${baseLanguage}.json`;
 
-    logger.debug('[Localize AI] translate', { localesDir, baseLanguage, targetLanguages });
+    logger.debug('[Localize AI][translate] started translate', { localesDir, baseLanguage, targetLanguages });
 
     if (!fs.existsSync(localesDir)) {
-      throw new Error(`Locales directory "${localesDir}" does not exist.`);
+      throw new Error(`[Localize AI][translate] Locales directory "${localesDir}" does not exist.`);
     }
 
     if (!fs.existsSync(baseFilePath)) {
-      throw new Error(`Base language file "${baseFilePath}" does not exist.`);
+      throw new Error(`[Localize AI][translate] Base language file "${baseFilePath}" does not exist.`);
     }
 
     const baseTranslations = JSON.parse(fs.readFileSync(baseFilePath, 'utf-8'));
@@ -64,6 +65,6 @@ export class LocalizationAI {
       logger.info(`"${targetLanguage}.json" translation completed`);
     }
 
-    logger.info('Translation process completed.');
+    logger.info('[Localize AI][translate] Translation process completed.');
   }
 }
