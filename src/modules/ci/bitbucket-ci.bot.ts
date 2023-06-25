@@ -20,6 +20,8 @@ export class BitbucketCIBot extends GitBot {
         const payload = {
             title: Commit.title,
             description: Commit.description,
+            close_source_branch: true,
+            state: 'OPEN',
             source: {
                 branch: {
                     name: translationBranch
