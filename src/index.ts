@@ -2,7 +2,7 @@ import { LocalizationAI } from "./modules/localize/localize";
 import {GitBot, BitbucketCIBot, GithubCIBot } from "./modules/ci";
 import { ILibConfig, loadConfig } from "./config";
 import { logger } from './utils'
-import { Platform, ConfigPath, PackageJsonPath } from "./constants";
+import { Platform, ConfigConstants } from "./constants";
 import path from 'path';
 
 const isCIEnvironment = process.env.CI;
@@ -20,10 +20,9 @@ function ciCreator(config: ILibConfig ): GitBot {
   }
 }
 
-
 async function run(): Promise<void> {
-  const configPath = path.resolve(ConfigPath);
-  const packageJsonPath = path.resolve(PackageJsonPath);
+  const configPath = path.resolve(ConfigConstants.configPath);
+  const packageJsonPath = path.resolve(ConfigConstants.packageJsonPath);
 
   const config = loadConfig(configPath, packageJsonPath);
   const localize = new LocalizationAI(config);

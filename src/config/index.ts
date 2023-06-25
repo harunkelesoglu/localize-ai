@@ -1,11 +1,12 @@
 import { Parser } from '../utils';
-import { BitbucketAPI, ConfigPath, GithubAPI, LanguageCodes, Platform } from "../constants";
+import { BitbucketAPI, ConfigConstants, GithubAPI, LanguageCodes, Platform } from "../constants";
 
 export interface IBaseConfig  {
   baseLanguage: LanguageCodes;
   localesDir: string;
   targetLanguages: LanguageCodes[];
   apiKey: string;
+  email: string;
 }
 export interface ICIConfig {
   platform: Platform | undefined,
@@ -17,11 +18,12 @@ export interface ICIConfig {
 
 export interface ILibConfig extends ICIConfig, IBaseConfig {}
 
-const baseConfig: IBaseConfig = {
-    baseLanguage: LanguageCodes.en,
-    localesDir: "./locales",
-    targetLanguages: [LanguageCodes.en, LanguageCodes.tr],
-    apiKey: process.env.OPENAI_API_KEY || 'your-api-key'
+export const baseConfig: IBaseConfig = {
+    baseLanguage: LanguageCodes.English,
+    localesDir: ConfigConstants.localesDir,
+    targetLanguages: [LanguageCodes.English, LanguageCodes.Turkish],
+    apiKey: ConfigConstants.openAIKey,
+    email: ConfigConstants.email
   };
   
 

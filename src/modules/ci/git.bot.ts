@@ -1,6 +1,7 @@
 import { ILibConfig } from "../../config";
 import { execSync } from 'child_process';
 import { logger } from '../../utils';
+import { Commit, ConfigConstants } from "../../constants";
 
 export abstract class GitBot {
     protected config: ILibConfig;
@@ -28,9 +29,9 @@ export abstract class GitBot {
 
     public commitChanges(): void {
         logger.debug('[Localize AI][GitBot] changes committing...');
-        execSync('git config user.email "localize@celsus.ai"');
-        execSync('git config user.name "@celsus-ai/localize"');
-        execSync('git commit -m "chore: Translations added"');
+        execSync(`git config user.email "${this.config.email}"`);
+        execSync(`git config user.name "${ConfigConstants.username}"`);
+        execSync(`git commit -m ${Commit.title}`);
     }
 
     public pushChanges(translationBranch: string): void {

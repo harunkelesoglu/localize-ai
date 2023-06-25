@@ -1,6 +1,6 @@
 import { ILibConfig } from "../../config";
 import { Commit } from "../../constants";
-import { logger, HttpClient, Parser } from '../../utils/';
+import { logger, HttpClient } from '../../utils/';
 import { GitBot } from './git.bot';
 
 
@@ -16,22 +16,25 @@ export class BitbucketCIBot extends GitBot {
 
         logger.debug('[Localize AI][BitbucketCIBot] pull request creating...', { baseBranch, translationBranch });
 
-        const endpoint = `${owner}/${repo}/pullrequests`;
+        const endpoint = `${owner}/${repo}/pullrequests/`;
         const payload = {
             title: Commit.title,
             description: Commit.description,
             close_source_branch: true,
-            state: 'OPEN',
             source: {
                 branch: {
                     name: translationBranch
+                },
+                repository:{
+                    full_name:`${owner}/${repo}`
                 }
             },
             destination: {
                 branch: {
                     name: baseBranch
                 }
-            }
+            },
+            reviewers: [],
         }
 
         const pullRequest = await this.httpClient.post(endpoint, payload);
