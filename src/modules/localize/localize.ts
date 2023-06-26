@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import { OpenAIApi, Configuration, CreateChatCompletionRequest } from 'openai';
-import { logger } from '../../utils';
+import { logger, Sorter } from '../../utils';
 import { LanguageCodes } from '../../constants';
 import { IBaseConfig } from '../../config';
 
@@ -36,7 +36,7 @@ export class LocalizationAI {
   }
 
   public async translate(): Promise<void> {
-    const { localesDir, baseLanguage, targetLanguages } = this.config;
+    const { localesDir, baseLanguage, targetLanguages, sortBy } = this.config;
     const baseFilePath = `${localesDir}/${baseLanguage}.json`;
 
     logger.debug('[Localize AI][translate] started translate', { localesDir, baseLanguage, targetLanguages });
@@ -61,7 +61,7 @@ export class LocalizationAI {
         targetTranslations[key] = await this.openAITranslator(baseLanguage, targetLanguage, sourceText);
       }
 
-      fs.writeFileSync(targetFilePath, JSON.stringify(targetTranslations, null, 2));
+      fs.writeFileSync(targetFilePath, JSON.stringify(Sorter[sortBy](targetTranslations), null, 2));
       logger.info(`"${targetLanguage}.json" translation completed`);
     }
 
