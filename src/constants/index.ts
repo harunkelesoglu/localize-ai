@@ -145,3 +145,8 @@ export const ConfigConstants = {
   email: 'localize@celsus-ai.com',
   username:"celsus-ai/localize"
 }
+
+export enum SortBy  {
+  'asceding' = 'asc',
+  'desceding' = 'desc'
+}

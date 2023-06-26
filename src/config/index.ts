@@ -1,5 +1,5 @@
 import { Parser } from '../utils';
-import { BitbucketAPI, ConfigConstants, GithubAPI, LanguageCodes, Platform } from "../constants";
+import { BitbucketAPI, ConfigConstants, GithubAPI, LanguageCodes, Platform, SortBy } from "../constants";
 
 export interface IBaseConfig  {
   baseLanguage: LanguageCodes;
@@ -7,6 +7,7 @@ export interface IBaseConfig  {
   targetLanguages: LanguageCodes[];
   apiKey: string;
   email: string;
+  sortBy: SortBy
 }
 export interface ICIConfig {
   platform: Platform | undefined,
@@ -23,7 +24,8 @@ export const baseConfig: IBaseConfig = {
     localesDir: ConfigConstants.localesDir,
     targetLanguages: [LanguageCodes.English, LanguageCodes.Turkish],
     apiKey: ConfigConstants.openAIKey,
-    email: ConfigConstants.email
+    email: ConfigConstants.email,
+    sortBy: SortBy.asceding
   };
   
 
