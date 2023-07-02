@@ -117,8 +117,8 @@ export enum Platform {
 };
 
 export const RegexPatterns = {
-  bitbucket: /bitbucket\.org\/([^\/]+)\/([^\/]+)\.git/,
-  github: /github\.com\/([^\/]+)\/([^\/]+)\.git/
+  bitbucket: /bitbucket\.org(\/|\:)([^\/]+)\/([^\/]+)\.git/,
+  github: /github\.com(\/|\:)([^\/]+)\/([^\/]+)\.git/
 };
 
 export const Commit = {
