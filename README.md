@@ -65,7 +65,7 @@ Make sure to replace `'YOUR_OPENAI_API_KEY'` with your actual OpenAI API key.
 
 The `celsus-ai/localize` library can be integrated with GitHub Actions and Bitbucket Pipelines for your CI/CD workflows.
 
-### Configuration
+### Configuration
 
 `repository url` should be added in package.json as below
 ```json
@@ -76,7 +76,7 @@ The `celsus-ai/localize` library can be integrated with GitHub Actions and Bitbu
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "localize":"node -r @celsus-ai/localize"
+    "localize":"node -r @celsus-ai/localize" // If you would like run localize in local
   },
   "repository": {
     "type": "git",
@@ -85,9 +85,7 @@ The `celsus-ai/localize` library can be integrated with GitHub Actions and Bitbu
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@celsus-ai/localize": "file:../../celsus-ai/localize/celsus-ai-localize-2.1.0.tgz",
-    "@types/node": "^20.3.1",
-    "husky": "^8.0.0"
+    "@celsus-ai/localize": "^2.1.0",
   },
   "dependencies": {
     "husky": "^8.0.3"
