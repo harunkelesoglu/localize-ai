@@ -1,6 +1,5 @@
 import * as fs from 'fs';
-import { OpenAIApi, Configuration, CreateChatCompletionRequest } from 'openai';
-import { logger, Sorter } from '../../utils';
+import { HttpClient, logger, Sorter } from '../../utils';
 import { LanguageCodes } from '../../constants';
 import { IBaseConfig } from '../../config';
 
@@ -10,19 +9,23 @@ export interface Translation {
 
 export class LocalizationAI {
   private config: IBaseConfig;
-  private openAIClient: OpenAIApi;
+  private httpClient: HttpClient;
 
   constructor(config: IBaseConfig) {
     this.config = config;
-    this.openAIClient = new OpenAIApi(new Configuration({ apiKey: config.apiKey }));
+    this.httpClient = new HttpClient({
+      baseUrl: config.ai?.baseUrl || '',
+      token: config.ai?.token || ''
+    });
   }
 
   private async openAITranslator(baseLanguage: LanguageCodes, targetLanguage: LanguageCodes, sourceText: string): Promise<string> {
 
     logger.debug('[Localize AI][openAITranslator] being translated...', { baseLanguage, targetLanguage, sourceText });
 
-    const createChatCompletionRequest: CreateChatCompletionRequest = {
-      model: "gpt-3.5-turbo",
+    const endpoint = 'chat/completions'
+    const createChatCompletionRequest = {
+      model: this.config.ai.model,
       messages: [
         {
           role: "user",
@@ -31,8 +34,8 @@ export class LocalizationAI {
       ]
     }
 
-    const translation: any = await this.openAIClient.createChatCompletion(createChatCompletionRequest);
-    return translation.data.choices[0].message.content;
+    const translation: any = await this.httpClient.post(endpoint ,createChatCompletionRequest)
+    return translation.choices[0].message.content;
   }
 
   public async translate(): Promise<void> {

@@ -1,12 +1,16 @@
-import { ILibConfig } from "../../config";
+import { IBaseConfig } from "../../config";
 import { execSync } from 'child_process';
-import { logger } from '../../utils';
+import { HttpClient, logger } from '../../utils';
 import { Commit, ConfigConstants } from "../../constants";
-
 export abstract class GitBot {
-    protected config: ILibConfig;
-    constructor(config: ILibConfig){
+    protected config: IBaseConfig;
+    protected httpClient: HttpClient;
+    constructor(config: IBaseConfig) {
         this.config = config;
+        this.httpClient = new HttpClient({
+            baseUrl: config.ci?.baseUrl || '',
+            token: config.ci?.token || ''
+        });
     }
 
     public hasTranslationChanges(): boolean {
@@ -21,7 +25,7 @@ export abstract class GitBot {
         execSync(`git checkout -b ${translationBranch}`);
     }
 
-    public stagedChanges(): void{
+    public stagedChanges(): void {
         const { localesDir } = this.config;
         logger.debug('[Localize AI][GitBot] changes staging...');
         execSync(`git add ${localesDir}/*.json`);
