@@ -29,7 +29,8 @@
   },
   "homepage": "https://github.com/celsus-ai/localize#readme",
   "dependencies": {
-    "winston": "^3.9.0"
+    "winston": "^3.9.0",
+    "axios": "^1.5.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.6.5",
@@ -39,7 +40,6 @@
     "@semantic-release/github": "^9.0.3",
     "@semantic-release/npm": "^10.0.4",
     "@types/node": "^20.3.1",
-    "axios": "^1.5.1",
     "husky": "^8.0.0",
     "reflect-metadata": "^0.1.13",
     "semantic-release": "^21.0.5"
