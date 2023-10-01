@@ -1,22 +1,20 @@
-import { ILibConfig } from "../../config";
+import { IBaseConfig } from "../../config";
 import { Commit } from "../../constants";
-import { logger, HttpClient } from '../../utils/';
+import { logger } from '../../utils/';
 import { GitBot } from './git.bot';
 
 
 export class BitbucketCIBot extends GitBot {
-    private httpClient: HttpClient;
-    constructor(config: ILibConfig){
+    constructor(config: IBaseConfig){
         super(config);
-        this.httpClient = new HttpClient(config.apiBaseUrl, config.apiToken);
     }
 
     public async createPullRequest(baseBranch: string, translationBranch: string,): Promise<void> {
-        const { owner, repo } = this.config;
+        const { ci } = this.config;
 
         logger.debug('[Localize AI][BitbucketCIBot] pull request creating...', { baseBranch, translationBranch });
 
-        const endpoint = `${owner}/${repo}/pullrequests/`;
+        const endpoint = `${ci?.owner}/${ci?.repo}/pullrequests/`;
         const payload = {
             title: Commit.title,
             description: Commit.description,
@@ -26,7 +24,7 @@ export class BitbucketCIBot extends GitBot {
                     name: translationBranch
                 },
                 repository:{
-                    full_name:`${owner}/${repo}`
+                    full_name:`${ci?.owner}/${ci?.repo}`
                 }
             },
             destination: {
