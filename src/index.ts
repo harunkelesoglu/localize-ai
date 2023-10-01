@@ -1,6 +1,6 @@
 import { LocalizationAI } from "./modules/localize/localize";
 import {GitBot, BitbucketCIBot, GithubCIBot } from "./modules/ci";
-import { ILibConfig, loadConfig } from "./config";
+import { IBaseConfig, loadConfig } from "./config";
 import { logger } from './utils'
 import { Platform, ConfigConstants } from "./constants";
 import path from 'path';
@@ -9,14 +9,14 @@ const isCIEnvironment = process.env.CI;
 const baseBranch = process.env.GITHUB_REF || process.env.BITBUCKET_BRANCH || '';
 const translationBranch = `localize-ai-${new Date().getTime()}`;
 
-function ciCreator(config: ILibConfig ): GitBot {
-  switch(config.platform){
+function ciCreator(config: IBaseConfig ): GitBot {
+  switch(config.ci?.platform){
     case Platform.github:
       return new GithubCIBot(config);
     case Platform.bitbucket:
       return new BitbucketCIBot(config);
     default:
-      throw new Error(`[Localize AI][ciCreator] unsupported ci environment: ${config.platform}`);
+      throw new Error(`[Localize AI][ciCreator] unsupported ci environment: ${config.ci?.platform}`);
   }
 }
 

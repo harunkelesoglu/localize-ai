@@ -1,6 +1,6 @@
 {
   "name": "@celsus-ai/localize",
-  "version": "2.1.1",
+  "version": "2.2.0-beta.1",
   "description": "The LocalizeAI is an npm package that enables easy localization of your applications using OpenAI. It provides seamless integration with OpenAI's language models, allowing you to localize and adapt your applications to different languages and regions effortlessly",
   "main": "dist/index.js",
   "private": false,
@@ -9,6 +9,9 @@
     "prepare": "husky install",
     "release": "semantic-release",
     "start": "node dist/index.js"
+  },
+  "bin": {
+    "localize": "node dist/index.js"
   },
   "repository": {
     "type": "git",
@@ -26,7 +29,6 @@
   },
   "homepage": "https://github.com/celsus-ai/localize#readme",
   "dependencies": {
-    "openai": "^3.3.0",
     "winston": "^3.9.0"
   },
   "devDependencies": {
@@ -37,7 +39,9 @@
     "@semantic-release/github": "^9.0.3",
     "@semantic-release/npm": "^10.0.4",
     "@types/node": "^20.3.1",
+    "axios": "^1.5.1",
     "husky": "^8.0.0",
+    "reflect-metadata": "^0.1.13",
     "semantic-release": "^21.0.5"
   },
   "release": {
