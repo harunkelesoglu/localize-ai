@@ -9,8 +9,8 @@ export class Parser {
       if (repositoryUrl.includes('github.com')) {
         const match = repositoryUrl.match(RegexPatterns.github);
         if (match) {
-          owner = match[1];
-          repo = match[2];
+          owner = match[2];
+          repo = match[3];
           platform = Platform.github;
         }
       } else if (repositoryUrl.includes('bitbucket.org')) {
