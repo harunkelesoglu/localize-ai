@@ -1,5 +1,5 @@
 {
-  "name": "@celsus-ai/localize",
+  "name": "@kelesoglu/localize-ai",
   "version": "2.2.1",
   "description": "The LocalizeAI is an npm package that enables easy localization of your applications using OpenAI. It provides seamless integration with OpenAI's language models, allowing you to localize and adapt your applications to different languages and regions effortlessly",
   "main": "dist/index.js",
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/celsus-ai/localize.git"
+    "url": "https://github.com/harunkelesoglu/localize-ai.git"
   },
   "keywords": [
     "localize",
@@ -25,9 +25,9 @@
   "author": "https://github.com/harunkelesoglu",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/celsus-ai/localize/issues"
+    "url": "https://github.com/harunkelesoglu/localize-ai/issues"
   },
-  "homepage": "https://github.com/celsus-ai/localize#readme",
+  "homepage": "https://github.com/harunkelesoglu/localize-ai#readme",
   "dependencies": {
     "winston": "^3.9.0",
     "axios": "^1.5.1"
