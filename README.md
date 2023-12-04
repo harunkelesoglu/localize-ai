@@ -52,7 +52,7 @@ module.exports = {
 ```json
 {
     "scripts": {
-        "localize":"node -r @kelesoglu/localize"
+        "localize":"node -r @kelesoglu/localize-ai"
     }
 }
 ```
@@ -61,7 +61,7 @@ Make sure to replace `'YOUR_OPENAI_API_KEY'` with your actual OpenAI API key.
 
 ## CI/CD
 
-The `kelesoglu/localize` library can be integrated with GitHub Actions and Bitbucket Pipelines for your CI/CD workflows.
+The `kelesoglu/localize-ai` library can be integrated with GitHub Actions and Bitbucket Pipelines for your CI/CD workflows.
 
 ### Configuration
 
@@ -74,7 +74,7 @@ The `kelesoglu/localize` library can be integrated with GitHub Actions and Bitbu
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "localize":"node -r @kelesoglu/localize" // If you would like run localize in local
+    "localize":"node -r @kelesoglu/localize-ai"
   },
   "repository": {
     "type": "git",
@@ -83,7 +83,7 @@ The `kelesoglu/localize` library can be integrated with GitHub Actions and Bitbu
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@kelesoglu/localize": "^2.1.0",
+    "@kelesoglu/localize-ai": "^2.1.0",
   },
   "dependencies": {
     "husky": "^8.0.3"
