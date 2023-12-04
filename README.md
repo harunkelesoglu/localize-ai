@@ -78,7 +78,7 @@ The `kelesoglu/localize-ai` library can be integrated with GitHub Actions and Bi
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:your_organization/example.git" //https://github.com/your_organization/example.git
+    "url": "git@github.com:your_organization/example.git"
   },
   "author": "",
   "license": "ISC",
