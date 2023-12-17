@@ -159,18 +159,9 @@ Please note that for Bitbucket Pipelines, you need to create a Bitbucket token a
 
 ## License
 
-This library is licensed under the MIT License. See the [LICENSE](./LICENSE) file for more details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-## Contributing
+## Author
 
-Contributions are welcome! Please follow the [contribution guidelines](CONTRIBUTING.md) when making contributions to this project.
-
-## Acknowledgements
-
-This library is built upon various open-source packages and technologies. We would like to express our gratitude to the developers and contributors of those projects.
-
-## Contact
-
-If you have any questions or feedback, feel free to contact us at [harunkelesoglu_@hotmail.com](mailto:harunkelesoglu_@hotmail.com).
-
-Enjoy using **localize-ai** and simplify your localization workflow with AI-powered translations!
+- Harun Keleşoğlu
+- Contact: [harun.kelesoglu19@gmail.com](mailto:harun.kelesoglu19@gmail.com)
