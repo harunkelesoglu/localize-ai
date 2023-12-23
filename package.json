@@ -1,6 +1,6 @@
 {
   "name": "@kelesoglu/localize-ai",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "The LocalizeAI is an npm package that enables easy localization of your applications using OpenAI. It provides seamless integration with OpenAI's language models, allowing you to localize and adapt your applications to different languages and regions effortlessly",
   "main": "dist/index.js",
   "private": false,
