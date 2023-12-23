@@ -1,6 +1,6 @@
 import { LocalizationAI } from "./modules/localize/localize";
-import {GitBot, BitbucketCIBot, GithubCIBot } from "./modules/ci";
-import { IBaseConfig, loadConfig } from "./config";
+import { GitBot, BitbucketCIBot, GithubCIBot } from "./modules/ci";
+import { IBaseConfig, loadConfigForCI, loadConfigForLocal } from "./config";
 import { logger } from './utils'
 import { Platform, ConfigConstants } from "./constants";
 import path from 'path';
@@ -24,27 +24,31 @@ async function run(): Promise<void> {
   const configPath = path.resolve(ConfigConstants.configPath);
   const packageJsonPath = path.resolve(ConfigConstants.packageJsonPath);
 
-  const config = loadConfig(configPath, packageJsonPath);
-  const localize = new LocalizationAI(config);
-  
-  if(isCIEnvironment) {
-    const git = ciCreator(config);
-    
-    if(git.hasTranslationChanges()) {
+  let config: IBaseConfig;
 
-      git.createAndCheckoutBranch(translationBranch);
-      await localize.translate();
-      git.stagedChanges();
-      git.commitChanges();
-      git.pushChanges(translationBranch);
-      git.createPullRequest(baseBranch, translationBranch);
-
-    } else {
-      logger.info('[Localize AI][run] There are no new translations.');
-    }
-
+  if (isCIEnvironment) {
+      config = loadConfigForCI(configPath, packageJsonPath);
   } else {
-    await localize.translate();
+      config = loadConfigForLocal(configPath);
+  }
+
+  const localize = new LocalizationAI(config);
+
+  if (isCIEnvironment) {
+      const git = ciCreator(config);
+
+      if (git.hasTranslationChanges()) {
+          git.createAndCheckoutBranch(translationBranch);
+          await localize.translate();
+          git.stagedChanges();
+          git.commitChanges();
+          git.pushChanges(translationBranch);
+          git.createPullRequest(baseBranch, translationBranch);
+      } else {
+          logger.info('[Localize AI][run] There are no new translations.');
+      }
+  } else {
+      await localize.translate();
   }
 
   logger.info('[Localize AI][run] runned successfully.');

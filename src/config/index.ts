@@ -41,24 +41,28 @@ export const baseConfig: IBaseConfig = {
   };
   
 
-export function loadConfig(configPath: string, packageJsonPath: string): IBaseConfig {
+export function loadConfigForCI(configPath: string, packageJsonPath: string): IBaseConfig {
+  const configuration = require(configPath);
+  const pkg = require(packageJsonPath);
 
-    const configuration = require(configPath);
-    const pkg = require(packageJsonPath);
+  if (!pkg.repository?.url) {
+      throw new Error(`[Localize AI][loadConfigForCI] repository information not found in ${packageJsonPath}`);
+  }
 
-    if(!pkg.repository?.url) {
-      throw new Error(`[Localize AI][loadConfig] repository information not found in ${packageJsonPath}`);
-    }
-    const { platform, owner, repo } = Parser.parseRepositoryUrl(pkg.repository.url);
+  const { platform, owner, repo } = Parser.parseRepositoryUrl(pkg.repository.url);
 
-    const ciConfig: ICIConfig = {
+  const ciConfig: ICIConfig = {
       platform,
       owner,
       repo,
       baseUrl: (platform === Platform.github) ? GithubAPI.baseUrl || '' : (platform === Platform.bitbucket) ? BitbucketAPI.baseUrl || '' : '',
       token: (platform === Platform.github) ? GithubAPI.token || '' : (platform === Platform.bitbucket) ? BitbucketAPI.token || '' : ''
-    };
+  };
 
+  return { ...baseConfig, ci: { ...ciConfig }, ...configuration };
+}
 
-    return { ...baseConfig, ci: { ...ciConfig }, ...configuration };
-};
+export function loadConfigForLocal(configPath: string): IBaseConfig {
+  const configuration = require(configPath);
+  return { ...baseConfig, ...configuration };
+}
